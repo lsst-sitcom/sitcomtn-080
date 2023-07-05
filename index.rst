@@ -43,7 +43,7 @@ Most notably, there is large jump of of ~ 3 _kNm_ in required torque at 3.5 *deg
 .. figure:: ./_static/elevation_slews_before_balancing_20230627.png
    :name: profile-before-balancing
 
-    : Here we show the torque required as a function of elevation for 90 degree slews upward (downward) in green (purple). For each slew the shaded area shows the raw measurements from the efd, and the line shows a rolling mean. A jump in the torque required can be seen at 3.5 degrees, and the rest of the torque profile is not symetric around the torque = 0 Nm line.
+   : Here we show the torque required as a function of elevation for 90 degree slews upward (downward) in green (purple). For each slew the shaded area shows the raw measurements from the efd, and the line shows a rolling mean. A jump in the torque required can be seen at 3.5 degrees, and the rest of the torque profile is not symetric around the torque = 0 Nm line.
 .. chage name to before final balancing.
 
 
