@@ -43,7 +43,7 @@ Most notably, there is large jump of of ~ 3 _kNm_ in required torque at 3.5 *deg
 .. figure:: ./_static/elevation_slews_before_balancing_20230627.png
    :name: profile-before-balancing
 
-   **Figure 1. :** Here we show the torque required as a function of elevation for 90 degree slews upward (downward) in green (purple). For each slew the shaded area shows the raw measurements from the efd, and the line shows a rolling mean. A jump in the torque required can be seen at 3.5 degrees, and the rest of the torque profile is not symetric around the torque = 0 Nm line.
+    : Here we show the torque required as a function of elevation for 90 degree slews upward (downward) in green (purple). For each slew the shaded area shows the raw measurements from the efd, and the line shows a rolling mean. A jump in the torque required can be seen at 3.5 degrees, and the rest of the torque profile is not symetric around the torque = 0 Nm line.
 .. chage name to before final balancing.
 
 
@@ -95,21 +95,21 @@ The :ref:`figure below <after-balancing>` shows the updated measured torque prof
 .. figure:: ./_static/elevation_slews_after_balancing_20230630.png
    :name: after-balancing
 
-   **Figure 2**: Each panel shows required torque as a function of elevation for slews between 0 and 90 *deg*. Upward slews are shown in orange and downward slews in blue, the lighter shaded area shows raw measured values, and the darker line denotes a rolling mean. The top (bottom) panel shows a pair of slews at 1% (10%) of the designed maximum velocity.
+   : Each panel shows required torque as a function of elevation for slews between 0 and 90 *deg*. Upward slews are shown in orange and downward slews in blue, the lighter shaded area shows raw measured values, and the darker line denotes a rolling mean. The top (bottom) panel shows a pair of slews at 1% (10%) of the designed maximum velocity.
 
 Next, we show a comparison of the torque profiles before and after masking the 0-5 *deg* region. This figure makes it clear that the majority of the previously observed hysteresis was due to trying to account for the heterogenously behaved low elevation region. All slews are run at 1% velocity configuration.
 
 .. figure:: ./_static/elevation_slews_comparison_20230630.png
    :name: compare-slews
 
-   **Figure 3**: A comparison of reqired torque as a function of elevation. This demonstrates the improvement in hysteresis gained by balancing the telescope while maksing out the region from 0-5 *deg*
+   : A comparison of reqired torque as a function of elevation. This demonstrates the improvement in hysteresis gained by balancing the telescope while maksing out the region from 0-5 *deg*
 
 Finally, we show the torque profiles for 4 pairs of azimuth slews run at 5% of the designed maximum velocity. These show the low hysteresis of the system for azimuth slews, with fairly little dependence on the telescope elevation.
 
 .. figure:: ./_static/azimuth_slews_20230630.png
    :name: azimuth-slews
 
-   **Figure 4**: Here we show the required torque as a function of azimuth angle over the range of 70-250 *deg*. The color of the line denotes the type of slew (positive/negative) and the system state (telescope elevation=90/0).
+   : Here we show the required torque as a function of azimuth angle over the range of 70-250 *deg*. The color of the line denotes the type of slew (positive/negative) and the system state (telescope elevation=90/0).
 .. _appendix-possible-causes:
 
 Appendix: other considered causes of the torque behaviour
