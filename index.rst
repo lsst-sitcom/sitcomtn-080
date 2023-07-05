@@ -21,6 +21,7 @@ After inital balancing of the TMA we have noticed larger than expected torques, 
 
 
 
+.. _introduction:
 
 Introduction
 ============
@@ -30,41 +31,92 @@ First, even after balancing we are seeing larger than expected torques reqired t
 Aditionally there is a hysteresis in the torque profiles (between upward and downward slews).
 Finally, we are seeing elevation dependent behaviour in the torque profiles (amount required to slew, and a jump in torque at different elevations such as 3 deg) .
 
-Behaviour post inital balancing
-===============================
+.. _description:
+
+Description of elevation torque behaviour post inital balancing
+===============================================================
 
 Inital balancing efforts left some interesting features in torque profiles during a slew.
-Figure 1, below, shows an upward and downward 90 degree slew from June, 27, 2023.
-Most notably, there is large jump in torque required at 3.5 deg, as well as a large hysteresis and change in required torque as function of elevation for all elevations, not just 3.5 deg.
+:ref:`profile-before-balancing`, below, shows an upward and downward 90 degree slew from June, 27, 2023.
+Most notably, there is large jump of of ~ 3 _kNm_ in required torque at 3.5 *deg* of elevation, as well as a large hysteresis and change in required torque as function of elevation for all elevations, not just 3.5 deg.
 
-.. image:: ./_static/elevation_slews_before_balancing_20230627.png
+.. figure:: ./_static/elevation_slews_before_balancing_20230627.png
+   :name: profile-before-balancing
 
-**Figure 1. :** Here we show the torque required as a function of elevation for 90 degree slews upward (downward) in green (purple). For each slew the shaded area shows the raw measurements from the efd, and the line shows a rolling mean. A jump in the torque required can be seen at 3.5 degrees, and the rest of the torque profile is not symetric around the torque = 0 Nm line.
+   **Figure 1. :** Here we show the torque required as a function of elevation for 90 degree slews upward (downward) in green (purple). For each slew the shaded area shows the raw measurements from the efd, and the line shows a rolling mean. A jump in the torque required can be seen at 3.5 degrees, and the rest of the torque profile is not symetric around the torque = 0 Nm line.
 .. chage name to before final balancing.
 
-Investigation of possible casuses
+
+.. _possible-causes:
+
+Possible casuses
 =================================
 
-A of possible causes for this behaviour were considered.
-These included the elevation breaks, elevation axis hard points, TMA ballance, cooling cables, and finally the *elevation drives themsselves*.
+A number of possible causes for this behaviour were considered.
+These included the elevation breaks, elevation axis hard points, TMA ballance, cooling cables and finally the *elevation drives themselves*. We report our findings for the elevation axis motor investigation in the subsequent subsection :ref:`Elevation axis motors <elevation-axis-motors>`. All other investigations are detailed in :ref:`the Appendix <appendix-possible-causes>`
 
-Elevation Axis Motors
+.. _elevation-axis-motors:
+
+Elevation axis motors
 ---------------------
 
-After some investigation.
+After some investigation, we think missing elevation structure magnets are the likely cause of the 3.5 *deg* jump in torque required, and this torque feature copmplicated our attempts at the balancing process.
 
-.. image:: ./_static/magnet_drive_zenith.png
+For elevation slews the system is driven by magnets in a mobile cradle structure, the drive assembly, located on the "ground" (azimuth). To drive the system the magnets slide between pairs of phase drives. There are 3 pairs of drives on each side of the TMA.
 
-.. image:: ./_static/magnet_drive_horizon.png
+The state of the system when the elevation is at the zenith, is shown :ref:`below <drive-at-zentih>`. Importantly, there is still ~ 20 *cm* of a magnet that will never get into the drives, as an extra longitude of the magnets track. The only way that this extra-length get in-between the drives is moving the elevation to impossible angles as +100 *deg*.
 
-.. image:: ./_static/magnet_drive_horizon_2.png
+.. figure:: ./_static/magnet_drive_zenith.png
+   :name: drive-at-zentih
 
+   Elevation magnet drive at zenith (90 *deg*)
 
-Other possible causes
----------------------
+However, when the telescope reaches an elevation 3.5 *deg* above the horizon **the magnetic track ends**.
+
+.. figure:: ./_static/magnet_drive_horizon.png
+   :name: drive-at-horizon
+
+   Elevation magnet drive at 3.5 *deg*
+
+This means that when the elevation is at 0 *deg* (horizon), there are ~25 *cm* of drives that are empty; they have no magnets to act-on.
+
+.. figure:: ./_static/magnet_drive_horizon_2.png
+   :name: drive-at-horizon-2
+
+   Elevation magnet drive at 0 *deg*
+
+Updated Torque profiles
+=======================
+
+Taking the :ref:`previously descibed <elevation-axis-motors>` findings into account, we repeated the balancing procedure while ignoring the elevation range between 0 *deg* and 5 *deg*.
+
+The :ref:`figure below <after-balancing>` shows the updated measured torque profiles for the elevation range 5-90 *deg*. This does not include the problematic region of 0-5 *deg*.  We show slew profiles at two different velocity configurations, 1% (XX *deg/s*) and 10% (XX *deg/s*) of the designed max velocity (XX *deg/s* **ref LVV**). Upward slews are shown in orange and downward slews in blue. It can be seen that for both configurations the majority of the observed hysteresis is gone and we are left with a more symetric torque profile.
+
+.. figure:: ./_static/elevation_slews_after_balancing_20230630.png
+   :name: after-balancing
+
+   **Figure 2**: Each panel shows required torque as a function of elevation for slews between 0 and 90 *deg*. Upward slews are shown in orange and downward slews in blue, the lighter shaded area shows raw measured values, and the darker line denotes a rolling mean. The top (bottom) panel shows a pair of slews at 1% (10%) of the designed maximum velocity.
+
+Next, we show a comparison of the torque profiles before and after masking the 0-5 *deg* region. This figure makes it clear that the majority of the previously observed hysteresis was due to trying to account for the heterogenously behaved low elevation region. All slews are run at 1% velocity configuration.
+
+.. figure:: ./_static/elevation_slews_comparison_20230630.png
+   :name: compare-slews
+
+   **Figure 3**: A comparison of reqired torque as a function of elevation. This demonstrates the improvement in hysteresis gained by balancing the telescope while maksing out the region from 0-5 *deg*
+
+Finally, we show the torque profiles for 4 pairs of azimuth slews run at 5% of the designed maximum velocity. These show the low hysteresis of the system for azimuth slews, with fairly little dependence on the telescope elevation.
+
+.. figure:: ./_static/azimuth_slews_20230630.png
+   :name: azimuth-slews
+
+   **Figure 4**: Here we show the required torque as a function of azimuth angle over the range of 70-250 *deg*. The color of the line denotes the type of slew (positive/negative) and the system state (telescope elevation=90/0).
+.. _appendix-possible-causes:
+
+Appendix: other considered causes of the torque behaviour
+=========================================================
 
 Elevation breaks
-^^^^^^^^^^^^^^^^
+----------------
 
 We checked for possible contact of the elevation brakes and the TMA during slews causing a dragging effect.
 This was done in a few different ways.
@@ -75,7 +127,7 @@ Finally, we measured the distance betewwn the break pads and the TMA at multiple
 *Include photo of breaks, and wear patterns*
 
 Elevation Axis Hard Stops
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------
 We also slewed the telescope to elevations of 7,3 and 0 deg and visually checked wether the hard stops were engaged in a way that could possibly explain the behaviour at 3.5 deg.
 It was found this was not possible and **notably** it looked like the hard stops would engage at a negative **after** the TMA would have encountered portions of the dome floor.
 
@@ -84,27 +136,8 @@ TMA Balance iterations
 
 Other systems on the TMA that could cause drag during slews
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- excell speasdsheet from doug --> transfer to python and fit? see ticker
-- With startrackers we could test the effect of this, could also look at elevation velocities (looks ok, but maybe a quantitative statement is good)
-
-
-Updated Torque profiles
-=======================
-
-Results for elevation
----------------------
-.. image:: ./_static/elevation_slews_after_balancing_20230630.png
-
-
-Comparison with previous profiles
----------------------------------
-.. image:: ./_static/elevation_slews_comparison_20230630.png
-
-Azimuth slews
--------------
-
-.. image:: ./_static/azimuth_slews_20230630.png
+- cables/lines on the TMA
+- excell speasdsheet from doug --> transfer to python and fit? see ticket
 
 
 .. Make in-text citations with: :cite:`bibkey`.
