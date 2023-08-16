@@ -58,8 +58,14 @@ Unstable torques
 
 To determine whether the sudden increase in torque observed at an elevation of 3.8 *degrees* is a recent phenomenon or has been consistently present over time, 
 we gathered slew data taken before the ME1M3 installation.
-In the figure below, we show a downward slew done during soak test with the yellow cross surrogate, way  before the installation of the M1M3 mirror cell on the TMA. 
-It shows a clear torque jump from -2000 to -4000 kNm when TMA crosses the 3.8 *degs* in elevation.
+The figure below shows a downward slew done during soak testing activities with the yellow cross surrogate, way before the installation of the M1M3 mirror cell on the TMA. 
+It shows a clear torque jump from -2000 to -4000 kNm when the TMA crosses the 3.8 degrees in elevation. 
+This finding was suggesting that the sudden increase in torque is not a recent phenomenon, but has been present since the TMA commissioning first started. 
+
+   .. The next step is to investigate the root cause of the torque jump so that it can be mitigated.
+
+
+
 
 .. figure:: ./_static/torque_jump_before_surrogate.png
    :name: torque-before-surrogate
