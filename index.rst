@@ -46,6 +46,19 @@ Most notably, there is large jump of ~ 3 *kNm* in required torque at 3.5 *deg* o
    Here we show the torque required as a function of elevation for 90 degree slews upward (downward) in green (purple). For each slew the shaded area shows the raw measurements from the EFD, and the line shows a rolling mean. A jump in the torque required can be seen at 3.5 degrees, and the rest of the torque profile is not symmetric around the torque = 0 Nm line.
 .. chage name to before final balancing.
 
+Torque Before Surrogate
+-----------------------
+
+To determine whether the sudden increase in torque observed at an elevation of 3.8 *degrees* is a recent phenomenon or has been consistently present over time, 
+we gathered slew data taken before the ME1M3 installation.
+In the figure below, we show a downward slew done during soak test with the yellow cross surrogate, way  before the installation of the M1M3 mirror cell on the TMA. 
+It shows a clear torque jump from -2000 to -4000 kNm when TMA crosses the 3.8 *degs* in elevation.
+
+.. figure:: ./_static/torque_jump_before_surrogate.png
+   :name: torque-before-surrogate
+   
+   Torque jump at 3.8 *deg* before m1m3 surrogate installation. Note a 2000 kNm jump when telescope reach 3.8 *deg* while going down.
+   
 
 .. _possible-causes:
 
@@ -149,6 +162,8 @@ Other systems on the TMA that could cause drag during slews
 
 
 .. - excell spreasdsheet from doug --> transfer to python and fit? see ticket
+
+
 
 
 .. Make in-text citations with: :cite:`bibkey`.
