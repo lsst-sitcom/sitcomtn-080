@@ -55,8 +55,6 @@ There are four important characteristics of this profile:
 
 Unstable torques
 ----------------
-Here we show a sudden jump of ~4000 *kNm* that occured prior to the installation of the M1M3 mirror cell.
-Include figure.
 
 To determine whether the sudden increase in torque observed at an elevation of 3.8 *degrees* is a recent phenomenon or has been consistently present over time, 
 we gathered slew data taken before the ME1M3 installation.
