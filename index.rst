@@ -6,16 +6,17 @@
 
 .. TODO: Delete the note below before merging new content to the main branch.
 
-.. note::
-
-   **This technote is a work-in-progress.**
-
 Abstract
 ========
 
 This technote is linked with `SITCOM-910`_
 
-After initial balancing of the TMA we have noticed larger than expected torques, as well as unusual torque profiles. This behavior was likely caused by the asymmetric distribution of magnets in the elevation drive. For slews lower than 3.5 degrees not all drives were able to fully function. Rebalancing excluding elevations below 5 deg resulted in more well-behaved torque profiles. We also present torque profiles for purely azimuth slews.
+The TMA is elevation assembly is balanced using the measured torques of the elevation motors.
+But we have found balancing the elevation assembly, using the provided equipment and procedure, impossible.
+In particular, there is substantial hysteresis in the required torque and there is a discontinuous jump in torque required to point the telescope at the horizon (below 3.85 deg).
+The discontinuity is likely caused by the magnet rail on the elevation axis ending at 3.85 deg.
+We found that rebalancing using a procedure that excluded measurements from elevations below 5 deg resulted in a much more well-behaved torque profile, although some hysteresis remains.
+We also present well-behaved torque profiles for purely azimuth slews.
 
 .. _SITCOM-910: https://jira.lsstcorp.org/browse/SITCOM-910
 
@@ -26,10 +27,10 @@ After initial balancing of the TMA we have noticed larger than expected torques,
 Introduction
 ============
 
-After installing the M1M3 cell we have noticed a few issues.
-First, even after balancing we are seeing larger than expected torques required to move the telescope (we would expect this to be close to 0). (is this still true?)
+After installing the M1M3 cell and attempting to balance the TMA for the first time, using the provided equipment and procedure, we have noticed a few issues.
+First, even after balancing we are seeing larger than expected and unstable torques are required to move the telescope and hold it in position.
 Additionally, there is a hysteresis in the torque profiles (between upward and downward slews).
-Finally, we are seeing elevation dependent behavior in the torque profiles (amount required to slew, and a jump in torque at different elevations such as 3 deg).
+Finally, we are seeing elevation dependent behavior in the torque profiles that would not occur for a balanced telescope. This unstable behavior includes both large scale variations as a function of elevation and discrete jumps at 3.85 deg.
 
 .. _description:
 
@@ -38,16 +39,24 @@ Description of elevation torque behavior post initial balancing
 
 Initial balancing efforts left some interesting features in torque profiles during a slew.
 The :ref:`profile <profile-before-balancing>` below, shows a pair of upward and downward 90 degree of slews from June, 27, 2023.
-Most notably, there is large jump of ~ 3 *kNm* in required torque at 3.5 *deg* of elevation, as well as a large hysteresis and change in required torque as function of elevation for all elevations, not just 3.5 deg.
+To reduce the inertial and hydrostatic bearing drag to negligible levels these slews were run at 1% of maximum speed.
+There are four important characteristics of this profile:
+
+1. For low elevation angles, less than 3.85, *deg* there is a sudden negative jump in the required torque of ~ 4 *kNm*.
+2. There is a directional motion torque hysteresis of 7 kNm (+/-3.5kNm) which behaves as if there is a large drag when there should be negligible drag. Although not shown in this plot, this large torque change occurs whenever the direction is changed.
+3. The elevation assembly has average torques near zero for horizon pointing and zenith pointing, but the intermediate elevation angles show an angle dependence that would be expected from an out of balance telescope.
+4. Although there is a large hysteretic change in the torque, the small changes that appear to be noise are actual very consistent with elevation angle. The upward and downward curves are very similar, just offset.
 
 .. figure:: ./_static/elevation_slews_before_balancing_20230627.png
    :name: profile-before-balancing
 
-   Here we show the torque required as a function of elevation for 90 degree slews upward (downward) in green (purple). For each slew the shaded area shows the raw measurements from the EFD, and the line shows a rolling mean. A jump in the torque required can be seen at 3.5 degrees, and the rest of the torque profile is not symmetric around the torque = 0 Nm line.
+   Here we show the torque required as a function of elevation for 90 degree slews upward (downward) in green (purple). For each slew the shaded area shows the raw measurements from the EFD, and the line shows a rolling mean. A jump in the torque required can be seen at 3.85 degrees, and the rest of the torque profile displays significant hysteresis and dependence on elevation.
 .. chage name to before final balancing.
 
-Torque Before Surrogate
------------------------
+Unstable torques
+----------------
+Here we show a sudden jump of ~4000 *kNm* that occured prior to the installation of the M1M3 mirror cell.
+Include figure.
 
 To determine whether the sudden increase in torque observed at an elevation of 3.8 *degrees* is a recent phenomenon or has been consistently present over time, 
 we gathered slew data taken before the ME1M3 installation.
@@ -60,10 +69,19 @@ It shows a clear torque jump from -2000 to -4000 kNm when TMA crosses the 3.8 *d
    Torque jump at 3.8 *deg* before m1m3 surrogate installation. Note a 2000 kNm jump when telescope reach 3.8 *deg* while going down.
    
 
+High elevation torque anomaly
+-----------------------------
+A similar anomaly in the elevation torque value occurs near zenith, see the :ref:`chronograf screenshot below <high-eleveation-profile>`. The elevation assembly can be balanced through the operation of the motorized balancing units to 0.4 kNm when locked at zenith (89.95). However as soon as the elevation assembly is driven of zenith a 2.2 kNm jump occurs. Once off zenith the interlocks prevent the rebalancing of the elevation assembly.  No likely cause has been determine for this zenith anomaly.
+
+.. figure:: ./_static/torque_anomaly_near_zenith.png
+   :name: high-eleveation-profile
+
+   Torque anomaly near zenith pointing.
+
 .. _possible-causes:
 
-Possible causes
-=================================
+Possible causes for low elevation behavior
+==========================================
 
 A number of possible causes for this behavior were considered.
 These included the elevation breaks, elevation axis hard points, TMA balance, cooling cables and finally the *elevation drives themselves*. We report our findings for the elevation axis motor investigation in the subsequent subsection :ref:`Elevation axis motors <elevation-axis-motors>`. All other investigations are detailed in :ref:`the Appendix <appendix-possible-causes>`
@@ -73,7 +91,7 @@ These included the elevation breaks, elevation axis hard points, TMA balance, co
 Elevation axis motors
 ---------------------
 
-After some investigation, we think missing elevation structure magnets are the likely cause of the 3.5 *deg* jump in torque required, and this torque feature complicated our attempts at the balancing process.
+After some investigation, we think missing elevation structure magnets are the likely cause of the 3.85 *deg* jump in torque required, and this torque feature complicated our attempts at the balancing process.
 
 For elevation slews the system is driven by magnets in a mobile cradle structure, the drive assembly, located on the "ground" (azimuth). To drive the system the magnets slide between pairs of phase drives. There are 3 pairs of drives on each side of the TMA.
 
@@ -98,12 +116,18 @@ This means that when the elevation is at 0 *deg* (horizon), there are ~25 *cm* o
 
    Elevation magnet drive at 0 *deg*
 
+The actual length of the magnetic arc is likely adequate. When the telescope is zenith pointing, a significant portion of the magnets, ~20 cm, are still outside the phase drives, figure 5. This is approximately equivalent to the missing portion for horizon pointing, and so appears to be a design flaw.
+
 Updated Torque profiles
 =======================
 
 Taking the :ref:`previously descibed <elevation-axis-motors>` findings into account, we repeated the balancing procedure while ignoring the elevation range between 0 *deg* and 5 *deg*.
+This was difficult since it was incompatible with both the balancing procedure and the balancing equipment.
+The procedure requires balancing the y-axis at zenith pointing and the z-axis at horizon pointing. The axes are balanced by driving motorized balancing units.
+The units are interlocked so then cannot be operated other than horizon pointing or zenith pointing, when the elevation pins are inserted.
 
-The :ref:`figure below <after-balancing>` shows the updated measured torque profiles for the elevation range 5-90 *deg*. This does not include the problematic region of 0-5 *deg*.  We show slew profiles at two different velocity configurations, 1% (XX *deg/s*) and 10% (XX *deg/s*) of the designed max velocity (XX *deg/s* **ref LVV**). Upward slews are shown in orange and downward slews in blue. It can be seen that for both configurations the majority of the observed hysteresis is gone, and we are left with a more symmetric torque profile.
+
+The :ref:`figure below <after-balancing>` shows the updated measured torque profiles for the elevation range 5-90 *deg*. This does not include the problematic region of 0-5 *deg*.  We show slew profiles at two different velocity configurations, 1% (0.05 *deg/s*) and 10% (0.5 *deg/s*) of the designed max velocity (5.25 *deg/s* TLS-REQ-0159). Upward slews are shown in orange and downward slews in blue. It can be seen that for both configurations the majority of the observed variation in required torque as a function of elevation is gone. The torque hysteresis appears to be reduced to ~ 4 *kNm* (+/- 2 *kNm*) and have little dependence on the speed of the slew.
 
 .. figure:: ./_static/elevation_slews_after_balancing_20230630.png
    :name: after-balancing
@@ -117,12 +141,47 @@ Next, we show a comparison of the torque profiles before and after masking the 0
 
    A comparison of required torque as a function of elevation. This demonstrates the improvement in hysteresis gained by balancing the telescope while masking out the region from 0-5 *deg*
 
+Disabled Elevation Drives
+=========================
+According to the EUI Elevation drives 31 and 32, figure 9, are not enabled when operating, figure 10.
+The EUI shows Elevation drives 31 and 32 disabled.
+Notice on the pictures all the other drives are enabled when 31 and 32 are disabled.
+It is possible that the logic is inverted.
+Because when all other drives are enabled, 31 and 32 are disabled.
+Note: The drives are mislabeled. Drives 31 and 32 are physically on +X side, but according to the EUI they are on the -X side.
+
+.. image:: _static/image_of_drive_31_32.png
+   :width: 49 %
+.. image:: _static/eui_image.png
+   :width: 49 %
+
+Left image: Drives 31 and 32 on the +X axis
+
+Right image: EUI screenshot showing drives 31 and 32 enabled when the rest are disabled. The opposite behaviour is also observed (31,32 disabled when the rest are enabled)
+
+Azimuth torque profiles
+=======================
 Finally, we show the torque profiles for 4 pairs of azimuth slews run at 5% of the designed maximum velocity. These show the low hysteresis of the system for azimuth slews, with fairly little dependence on the telescope elevation.
 
 .. figure:: ./_static/azimuth_slews_20230630.png
    :name: azimuth-slews
 
    Here we show the required torque as a function of azimuth angle over the range of 70-250 *deg*. The color of the line denotes the type of slew (positive/negative) and the system state (telescope elevation=90/0).
+
+Open issues to be fixed/investigated
+====================================
+It is not possible to balance the telescope within the TMA requirements with the present situation.
+This increases the risk of a dangerous unintended motion and produces unnecessary image degrading heat.
+The torque hysteresis will also likely produce difficulties in pointing and tracking.
+
+1. It should be verified that the torque reversal near horizon pointing is produced by the premature truncation of the elevation magnets. If corrective action is shown to be impractical, the software interlocks should be modified to allow operation of the balancing units without the elevation pins inserted horizon pointing, and a new procedure produced for balancing the elevation assembly with the equipment available.
+
+2. The cause of the torque jump near zenith pointing should be determined and eliminated if possible. If not the software interlocks should be modified to allow operation of the balancing units without the elevation pins inserted zenith pointing.
+
+3. The cause of the torque hysteresis should be determined and eliminated. As a result of the EUI it is possible that magnets 31 and 32 are operating incorrectly or reporting their torques (current) incorrectly. If this deficiency is not related to the torque hysteresis it should be corrected regardless. The +x and –x should be labelled correctly. If the large torque hysteresis is produced by another phenomenon this still needs to be determined and rectified. The telescope cannot be properly operated under these conditions.
+
+
+
 .. _appendix-possible-causes:
 
 Appendix: other considered causes of the torque behavior
