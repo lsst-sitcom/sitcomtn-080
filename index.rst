@@ -11,9 +11,10 @@ Abstract
 
 This technote is linked with `SITCOM-910`_
 
-The TMA is elevation assembly is balanced using the measured torques of the elevation motors.
-But we have found balancing the elevation assembly, using the provided equipment and procedure, impossible.
-In particular, there is substantial hysteresis in the required torque and there is a discontinuous jump in torque required to point the telescope at the horizon (below 3.85 deg).
+The TMA elevation assembly is balanced using the measured torques of the elevation motors.
+Balancing the elevation assembly using the provided equipment and procedure has proved to be impossible.
+This procedure requires balancing the y-axis at zenith pointing and the z-axis at horizon pointing. The axes are balanced by driving motorized balancing units which can only be operated at horizon pointing or zenith pointing, when the elevation locking pins are inserted.
+In particular after balancing, there is substantial hysteresis in the required torque and there is a discontinuous jump in torque required to point the telescope at the horizon (below 3.85 deg).
 The discontinuity is likely caused by the magnet rail on the elevation axis ending at 3.85 deg.
 We found that rebalancing using a procedure that excluded measurements from elevations below 5 deg resulted in a much more well-behaved torque profile, although some hysteresis remains.
 We also present well-behaved torque profiles for purely azimuth slews.
@@ -50,18 +51,18 @@ There are four important characteristics of this profile:
 .. figure:: ./_static/elevation_slews_before_balancing_20230627.png
    :name: profile-before-balancing
 
-   Here we show the torque required as a function of elevation for 90 degree slews upward (downward) in green (purple). For each slew the shaded area shows the raw measurements from the EFD, and the line shows a rolling mean. A jump in the torque required can be seen at 3.85 degrees, and the rest of the torque profile displays significant hysteresis and dependence on elevation.
+   Here we show torque as a function of elevation for 90 degree slews upward (downward) in green (purple). For each slew the shaded area shows the raw measurements from the EFD, and the line shows a rolling mean. A jump in the torque can be seen at 3.85 degrees, and the rest of the torque profile displays significant hysteresis and dependence on elevation.
 .. chage name to before final balancing.
 
 Unstable torques
 ----------------
 
-To determine whether the sudden increase in torque observed at an elevation of 3.8 *degrees* is a recent phenomenon or has been consistently present over time, 
-we gathered slew data taken before the ME1M3 installation.
+To determine whether the sudden jump in torque observed at an elevation of 3.8 *degrees* is a recent phenomenon or has been consistently present over time,
+we gathered slew data taken before the M1M3 installation.
 
-The figure below shows a downward slew done during soak testing activities with the yellow cross surrogate, way before the installation of the M1M3 mirror cell on the TMA. 
-It shows a clear torque jump from -2000 to -4000 kNm when the TMA crosses the 3.8 degrees in elevation. 
-This finding was suggesting that the sudden increase in torque is not a recent phenomenon, but has been present since the TMA commissioning first started. 
+The figure below shows a downward slew done during soak testing activities with the yellow cross surrogate, way before the installation of the M1M3 mirror cell on the TMA.
+It shows a clear torque jump from -2000 to -4000 kNm when the TMA crosses the 3.8 degrees in elevation.
+This finding was suggesting that the sudden jump in torque is not a recent phenomenon, but has been present since the TMA commissioning first started.
 
    .. The next step is to investigate the root cause of the torque jump so that it can be mitigated.
 
@@ -70,9 +71,9 @@ This finding was suggesting that the sudden increase in torque is not a recent p
 
 .. figure:: ./_static/torque_jump_before_surrogate.png
    :name: torque-before-surrogate
-   
+
    Torque jump at 3.8 *deg* before m1m3 surrogate installation. Note a 2000 kNm jump when telescope reach 3.8 *deg* while going down.
-   
+
 
 High elevation torque anomaly
 -----------------------------
@@ -148,15 +149,14 @@ Next, we show a comparison of the torque profiles before and after masking the 0
 
 Disabled Elevation Drives
 =========================
-According to the EUI Elevation drives 31 and 32, figure 9, are not enabled when operating, figure 10.
-The EUI shows Elevation drives 31 and 32 disabled.
-Notice on the pictures all the other drives are enabled when 31 and 32 are disabled.
-It is possible that the logic is inverted.
-Because when all other drives are enabled, 31 and 32 are disabled.
-Note: The drives are mislabeled. Drives 31 and 32 are physically on +X side, but according to the EUI they are on the -X side.
+According to the EUI the elevation drives 31 and 32 are not enabled when operating.
+The left image below shows the location of elevation drives 31 and 32 on the telescope, and the right image is a screenshot of the EUI showing the drives disabled.
+Note on the pictures, all the other drives are enabled when 31 and 32 are disabled.
+Additionally, the drives are mislabeled drives 31 and 32 are physically on +X side, but according to the EUI they are on the -X side.
 
 .. image:: _static/image_of_drive_31_32.png
    :width: 49 %
+
 .. image:: _static/eui_image.png
    :width: 49 %
 
@@ -198,7 +198,7 @@ Elevation breaks
 We checked for possible contact of the elevation brakes and the TMA during slews causing a dragging effect.
 This was done in a few different ways.
 First, by looking at the wear patterns between the break pads and the elevation axis at different elevations, there seemed to be some variance in the wear but nothing obvious (see images below or `SUMMIT-7581`).
-Then, we took infrared images of the TMA during slews no hot points were detected.
+Then, we took infrared images of the TMA during slews. No hot points were detected.
 Finally, we measured the distance between the break pads and the TMA at multiple elevations while the breaks were released finding at no points did the breaks make contact with the axis during a slew.
 
 .. _SUMMIT-7581: https://jira.lsstcorp.org/browse/SUMMIT-7581
@@ -214,7 +214,7 @@ A few images of the TMA break plates showing wear, and metal powder.
 
 Elevation Axis Hard Stops
 -------------------------
-We also slewed the telescope to elevations of 7,3 and 0 deg and visually checked whether the hard stops were engaged in a way that could possibly explain the behavior at 3.5 deg.
+We also slewed the telescope to elevations of 7, 3 and 0 deg and visually checked whether the hard stops were engaged in a way that could possibly explain the behavior at 3.5 deg.
 It was found this was not possible, and **notably** it looked like the hard stops would engage at a negative **after** the TMA would have encountered portions of the dome floor.
 
 .. TMA Balance iterations
