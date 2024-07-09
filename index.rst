@@ -1,13 +1,17 @@
-:tocdepth: 1
+###############################
+TMA torque analysis (with M1M3)
+###############################
 
-.. sectnum::
+.. abstract::
+
+   We have noticed larger than expected torques on the tma after balancing, and are using this technote to capture the details of our investigation
+
+
 
 .. Metadata such as the title, authors, and description are set in metadata.yaml
 
 .. TODO: Delete the note below before merging new content to the main branch.
 
-Abstract
-========
 
 This technote is linked with `SITCOM-910`_
 

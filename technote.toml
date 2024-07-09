@@ -1,0 +1,58 @@
+[technote]
+id = "SITCOMTN-080"
+series_id = "SITCOMTN"
+canonical_url = "https://sitcomtn-080.lsst.io/"
+github_url = "https://github.com/lsst-sitcom/sitcomtn-080"
+github_default_branch = "main"
+organization.name = "Vera C. Rubin Observatory"
+organization.ror = "https://ror.org/048g3cy84"
+license.id = "CC-BY-4.0"
+[[technote.authors]]
+name = {given = "Peter S.", family = "Ferguson"}
+internal_id = "fergusonps"
+orcid = "https://orcid.org/0000-0001-6957-1627"
+[[technote.authors.affiliations]]
+name = "Department of Physics"
+internal_id = "WisconsinMadison"
+address = "University of Wisconsin-Madison, Madison, WI 53706, USA"
+
+[[technote.authors]]
+name = {given = "Douglas R.", family = "Neill"}
+internal_id = "neilldr"
+[[technote.authors.affiliations]]
+name = "Vera C. Rubin Observatory Project Office"
+internal_id = "RubinObs"
+address = "950 N. Cherry Ave., Tucson, AZ 85719, USA"
+
+[[technote.authors]]
+name = {given = "David", family = "Sanmartim"}
+internal_id = "sanmartimd"
+orcid = "https://orcid.org/0000-0002-9238-9521"
+[[technote.authors.affiliations]]
+name = "Vera C. Rubin Observatory"
+internal_id = "RubinObsC"
+address = "Avenida Juan Cisternas #1500, La Serena, Chile"
+
+[[technote.authors]]
+name = {given = "Freddy", family = "Muñoz Arancibia"}
+internal_id = "munozarancibiaf"
+[[technote.authors.affiliations]]
+name = "Vera C. Rubin Observatory Project Office"
+internal_id = "RubinObs"
+address = "950 N. Cherry Ave., Tucson, AZ 85719, USA"
+
+[[technote.authors]]
+name = {given = "Jacques", family = "Sebag"}
+internal_id = "sebagj"
+[[technote.authors.affiliations]]
+name = "Vera C. Rubin Observatory"
+internal_id = "RubinObsC"
+address = "Avenida Juan Cisternas #1500, La Serena, Chile"
+
+[[technote.authors]]
+name = {given = "Franco", family = "Colleoni"}
+internal_id = "colleonif"
+[[technote.authors.affiliations]]
+name = "Vera C. Rubin Observatory"
+internal_id = "RubinObsC"
+address = "Avenida Juan Cisternas #1500, La Serena, Chile"
