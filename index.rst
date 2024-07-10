@@ -8,11 +8,6 @@ TMA torque analysis (with M1M3)
 
 
 
-.. Metadata such as the title, authors, and description are set in metadata.yaml
-
-.. TODO: Delete the note below before merging new content to the main branch.
-
-
 This technote is linked with `SITCOM-910`_
 
 The TMA elevation assembly is balanced using the measured torques of the elevation motors.
